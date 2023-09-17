@@ -14,18 +14,28 @@ mysql = MySQL(app)
 @app.route("/")
 def home():
   return render_template("index.html")
+
+@app.route("/contact")
+def contact():
+  return render_template("contact.html")
+
+@app.route("/nextpage")
+def nextpage():
+  render_template("nextpage.html")
+
+
 def getusers(search):
   conn = mysql.connect('MYSQL_DB')
   cursor = conn.cursor()
   cursor.execute(
-    "SELECT * FROM games WHERE games.Game_Name LIKE ? ",("%"+search+"%")
+    "SELECT * FROM gamelist.games WHERE game.Game_Name LIKE ? ",("%"+search+"%")
   )
   results = cursor.fetchall()
   conn.close()
   return results
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/index", methods=["GET", "POST"])
 def index():
   # (C1) SEARCH FOR USERS
   if request.method == "POST":
@@ -36,6 +46,7 @@ def index():
 
   # (C2) RENDER HTML PAGE
   return render_template("nextpage.html", usr=users)
+
 
 
 # (D) START
