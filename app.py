@@ -1,54 +1,29 @@
-from flask import Flask,render_template, request
-from flask_mysqldb import MySQL
-
+from flask import Flask, render_template, request, jsonify
+from database import load_games_from_db, getresult
 
 app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'password'
-app.config['MYSQL_DB'] = 'gamelist'
-
-mysql = MySQL(app)
-
 @app.route("/")
-def home():
-  return render_template("index.html")
-
-@app.route("/contact")
-def contact():
-  return render_template("contact.html")
-
-@app.route("/nextpage")
-def nextpage():
-  render_template("nextpage.html")
-
-
-def getusers(search):
-  conn = mysql.connect('MYSQL_DB')
-  cursor = conn.cursor()
-  cursor.execute(
-    "SELECT * FROM gamelist.games WHERE game.Game_Name LIKE ? ",("%"+search+"%")
-  )
-  results = cursor.fetchall()
-  conn.close()
-  return results
-
-
-@app.route("/index", methods=["GET", "POST"])
 def index():
-  # (C1) SEARCH FOR USERS
-  if request.method == "POST":
-    data = dict(request.form)
-    users = getusers(data["search"])
-  else:
-    users = []
+    return render_template("index.html")
 
-  # (C2) RENDER HTML PAGE
-  return render_template("nextpage.html", usr=users)
+@app.route("/search", methods=["get","post"])
+def search():
+    if request.method == "POST":
+        data = request.form
+        users = getresult(data["search"])
+    else:
+        users = []
+
+    return render_template("nextpage.html", usr=users)
+@app.route("/api/games")
+def list_games():
+    games = load_games_from_db()
+    return jsonify(games)
 
 
 
-# (D) START
+
+
 if __name__ == "__main__":
-  app.run('localhost', 3306)
+    app.run('localhost', debug=True)

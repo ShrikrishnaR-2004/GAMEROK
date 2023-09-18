@@ -10,23 +10,11 @@
     <button type="submit" class="signin" onclick="window.location.href='signin.html';">SIGN IN</button>
     <h1>GAMEROK</h1>
     <div class="container">
-        <form action="nextpage.html" class="search-bar">
+        <form action="/search" class="search-bar" method="post">
             <input type="text" placeholder="SEARCH GAMES" name="search">
-            <button type="submit"><img src="../static/search.png"></button>
+            <button type="submit" value="search"><img src="../static/search.png"></button>
         </form>
-        {% if usr | length != 0 %}
-        <table id="demo">
-            {% for u in usr %}
-            <tr>
-                <td>{{ u[0] }}</td>
-                <td>{{ u[1] }}</td>
-                <td>{{ u[2] }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        {% else %}
-            <div id="demo">No search results.</div>
-        {% endif %}
+        {% include 'option.html' %}
     </div>
     <button type="button" class="contact" onclick="window.location.href='contact.html';">Contact US</button>
     <p class="copyright">&copy; GAMEROK</p>
