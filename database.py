@@ -1,4 +1,6 @@
-from sqlalchemy import create_engine, text
+
+from sqlalchemy import create_engine, text, bindparam
+from sqlalchemy.sql import select
 
 engine = create_engine("mysql+pymysql://root:password@localhost/gamelist?charset=utf8mb4")
 
@@ -19,3 +21,7 @@ def getresult(search):
             return None
         else:
             return rows[0]._asdict()
+
+
+
+        

@@ -21,7 +21,17 @@ def list_games():
     games = load_games_from_db()
     return jsonify(games)
 
+@app.route("/login")
+def login():
+    return render_template("signin.html")
 
+@app.route("/signup")
+def signup():
+    return render_template("signup.html")
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 
 
 
