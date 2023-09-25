@@ -7,12 +7,15 @@
     <link rel="icon" type="image/x-icon" href="../static/logo.ico">
 </head>
 <body>
-   <div class="container">
-        <form>
-            <h1>SIGN UP</h1>
-            <p>Create an account of your own!</p>
-            <br />
-            <label>Username</label>
+    <div class="container">
+      <div class="card">
+        <div class="card_title">
+          <h1>SIGN UP</h1>
+          <p>Create an account of your own!</p>
+        </div>
+        <div class="form">
+        <form action="/register" method="post">
+          <label>Username</label>
             <input type="text" placeholder="Username" />
             <br />
             <label>Email</label>
@@ -26,13 +29,16 @@
             <p>
                 By creating an account on this website you agree to our
                 <a href="#">Terms and Services</a>
-            </p>
-
-            <button class="registerbtn">Sign-up</button>
-          </div>
-            <div class="login">
-            <p>Already have an account?<a href="/login">Login</a></p>
+            </p><br />
         </form>
+        </div>
+        <div class="signip">
+            <button>Sign Up</button>
+        </div>
+          <div class="login">
+            <br/><p>Already have an account?<a href="/login"> Login</a> </p>
+          </div>
+      </div>
     </div>
 </body>
 </html>

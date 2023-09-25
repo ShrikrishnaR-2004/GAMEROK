@@ -15,6 +15,7 @@ def load_games_from_db():
 
 def getresult(search):
     sql = text("SELECT * FROM games WHERE Game_Name = :value")
+    #sql= games.select().where(games.Game_name=:value)
     with engine.connect() as conn:
         result = conn.execute(sql, value=search)
 

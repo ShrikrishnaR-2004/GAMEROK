@@ -40,6 +40,10 @@ def signup():
 def contact():
     return render_template("contact.html")
 
+@app.route("/contact/video")
+def intro_video():
+    return render_template("intro_video.html")
+
 
 if __name__ == "__main__":
     app.run('localhost', debug=True)
