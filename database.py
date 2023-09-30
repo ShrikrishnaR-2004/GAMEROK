@@ -44,13 +44,18 @@ def getresult(search):
     result = session.query(games).filter(games.Game_Name == search)
     #result = conn.execute(text("select * from games where Game_Name like 'Halo'"))
 
-    rows = result.all()
+    '''rows = result.all()
     if len(rows) == 0:
         return None
     else:
         for r in result:
-            out=list(r.Game_Name, r.Production)
-            ou1=dict(out)
-            return out1
+            return r.Game_Name, r.Production, r.Description, r.Reviews, r.Platforms, r.Requirements, r.Learn_more, r.Playthrough_hours
+    r=[]
+    for row in result.all():
+        r.append(row._asdict())
+    return r'''
+    r=result.all()
+    return r._asdict()
+
 
 #, r.Production, r.Description, r.Reviews, r.Platforms, r.Requirements, r.Learn_more, r.Playthrough_hours
