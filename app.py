@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 from database import load_games_from_db, getresult
 
 app = Flask(__name__)
@@ -43,6 +43,11 @@ def contact():
 @app.route("/contact/video")
 def intro_video():
     return render_template("intro_video.html")
+
+@app.route("/contact/video/Gamerok.mp4")
+def video():
+    return redirect('../static/Gamerok.mp4', 301)
+
 
 
 if __name__ == "__main__":

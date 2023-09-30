@@ -48,7 +48,7 @@ def getresult(search):
     #sql = sqlalchemy.text("SELECT * FROM @games AS g WHERE g.Game_Name =: value")
     #sql= games.select().where(games.Game_name==value)
     #result = conn.execute(sql, value=search)
-    result = session.query(games).filter(games.Game_Name == search)
+    result = session.query(games).filter(games.Game_Name.like(search))
     #result = conn.execute(text("select * from games where Game_Name like 'Halo'"))
 
     '''rows = result.all()
@@ -56,16 +56,12 @@ def getresult(search):
         return None
     else:
         for r in result:
-            return r.Game_Name, r.Production, r.Description, r.Reviews, r.Platforms, r.Requirements, r.Learn_more, r.Playthrough_hours'''
+            return r.Game_Name, r.Production, r.Description, r.Reviews, r.Platforms, r.Requirements, r.Learn_more, r.Playthrough_hours
+    r=result.all()
+    return r._asdict()'''
+
     r=[]
     for row in result.all():
         r.append(row._asdict())
-    print (r)
-    '''r=result.all()
-    return r._asdict()'''
+    return r
 
-
-
-#, r.Production, r.Description, r.Reviews, r.Platforms, r.Requirements, r.Learn_more, r.Playthrough_hours
-
-getresult("Celeste")
