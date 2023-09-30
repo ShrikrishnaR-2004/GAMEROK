@@ -1,7 +1,7 @@
 import sqlalchemy
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine, text, inspect
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.ext.declarative import as_declarative
 
 Base = sqlalchemy.orm.declarative_base()
 
@@ -15,6 +15,13 @@ def load_games_from_db():
         for row in result.all():
             games.append(row._asdict())
         return games
+
+
+@sqlalchemy.orm.as_declarative()
+class Base:
+    def _asdict(self):
+        return {c.key: getattr(self, c.key)
+                for c in inspect(self).mapper.column_attrs}
 
 
 class games(Base):
@@ -49,13 +56,16 @@ def getresult(search):
         return None
     else:
         for r in result:
-            return r.Game_Name, r.Production, r.Description, r.Reviews, r.Platforms, r.Requirements, r.Learn_more, r.Playthrough_hours
+            return r.Game_Name, r.Production, r.Description, r.Reviews, r.Platforms, r.Requirements, r.Learn_more, r.Playthrough_hours'''
     r=[]
     for row in result.all():
         r.append(row._asdict())
-    return r'''
-    r=result.all()
-    return r._asdict()
+    print (r)
+    '''r=result.all()
+    return r._asdict()'''
+
 
 
 #, r.Production, r.Description, r.Reviews, r.Platforms, r.Requirements, r.Learn_more, r.Playthrough_hours
+
+getresult("Celeste")
