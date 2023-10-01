@@ -26,9 +26,10 @@
             </ul>
         </nav>
     </header>
-
-    <p>{{ usr }}</p>
-    <p>{{ usr.Production }}</p>
-
+    {% if usr | length  %}
+        <p>{{ usr.Game_Id }}</p>
+    {% else %}
+        <p>404</p>
+     {% endif %}
 </body>
 </html>
