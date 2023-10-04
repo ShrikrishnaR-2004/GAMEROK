@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify, send_from_directory
 from database import load_games_from_db, getresult
 
 app = Flask(__name__)
-app.static = 'videos'
+app.static = 'static'
 
 @app.route("/")
 def index():

@@ -82,3 +82,24 @@ body{
     padding: 3px 17px;
     width: 150px;
 }
+
+.search button img{
+    height: 19px;
+    width: 25px;
+    margin-left: 2.5px;
+    margin-top: 1px;
+    display: flex;
+
+}
+
+.search button{
+    border: 0;
+    background: black;
+    height: 20px;
+    width: 25px;
+    cursor: pointer;
+}
+
+.details{
+    color: white;
+}

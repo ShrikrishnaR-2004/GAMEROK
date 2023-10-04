@@ -22,14 +22,28 @@
                 <li><a href="">NEWS</a></li>
                 <div class="search">
                     <input type="text" name="search" id="search" placeholder="Search">
+                    <button type="submit" value="search"><img src="../static/search.png"></button>
                 </div>
             </ul>
         </nav>
     </header>
-    {% if usr | length  %}
-        <p>{{ usr.Game_Id }}</p>
-    {% else %}
-        <p>404</p>
-     {% endif %}
+    <form class="details">
+        {% for user in usr %}
+            {% if user | length  %}
+                <p>{{ user.Game_Name }}</p><br>
+                <p>{{ user.Production }}</p><br>
+                <p>{{ user.Description }}</p><br>
+                <p>{{ user.Reviews }}</p><br>
+                <p>{{ user.Platform }}</p><br>
+                <p>{{ user.Requirements }}</p><br>
+                <p>{{ user.Learn_more }}</p><br>
+                <p>{{ user.Playthrough_hours }}</p>
+            {% else %}
+                <p>404</p>
+            {% endif %}
+        {% endfor %}
+    </form>
+
+
 </body>
 </html>
